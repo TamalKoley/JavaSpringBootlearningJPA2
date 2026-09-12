@@ -1,5 +1,6 @@
 package com.tamal.springboottutorialone.student;
 
+import com.tamal.springboottutorialone.CustomException.ApiRequestException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class StudentService {
     public void updateStudent(Student student ,Long id) {
 
             Student foundStudent=studentRepository.findById(id).orElseThrow( ()->
-                     new IllegalStateException("Student with id "+id+" not found")
+                     new ApiRequestException("Student with id "+id+" not found")
             );
 
             foundStudent.setName(student.getName());
